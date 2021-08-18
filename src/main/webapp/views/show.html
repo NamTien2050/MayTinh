@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Home</h2>
+    <table >
+        <a href="/create" class=" btn btn-warning">create maytinh</a>
+        <br>
+        <form action="/home" method="get">
+            <input type="text" class="form-control" placeholder="Tim kiem theo ten" name="findByName">
+            <input type="hidden" name="action" value="finByName">
+            <button type="submit" class="btn btn-success">FindBy</button>
+        </form>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Ten</th>
+            <th>Gia</th>
+            <th>So luong</th>
+            <th>Ngay SX</th>
+            <th>Anh</th>
+<!--            <th>Chung Loai</th>-->
+        </tr>
+        </thead>
+        <body>
+        <tr th:each="maytinh,loop: ${listMayTinh}">
+            <td th:text="${maytinh.id}"></td>
+            <td th:text="${maytinh.ten}"></td>
+            <td th:text="${maytinh.gia}"></td>
+            <td th:text="${maytinh.soLuong}"></td>
+            <td th:text="${maytinh.ngaySX}"></td>
+            <td><img th:src="${maytinh.img}" width="300px" height="200px"></td>
+<!--            <td th:text="${maytinh.chungLoaiDienThoai.ten}"></td>-->
+            <td><a th:href="@{/edit/{index}(index=${loop.index})}" class=" btn btn-warning">Edit</a></td>
+            <td><a th:href="@{/delete/{index}(index=${loop.index})}" class=" btn btn-warning">Delete</a></td>
+        </tr>
+        </body>
+    </table>
+    </form>
+</div>
+
+</body>
+</html>
